@@ -10,13 +10,20 @@ module.exports = function(RED) {
             const msgspeech = msg.simpleresponse && msg.simpleresponse.speech;
             const text = msgtext || config.text;
             const speech = msgspeech || config.speech;
+            const speech = config.close;
+            
+            if (!close)
+                msg.conv.ask(new SimpleResponse({
+                    text: text,
+                    speech: speech ||  text
+                }));
+            else
+                msg.conv.close(new SimpleResponse({
+                    text: text,
+                    speech: speech ||  text
+                }));
 
-            msg.conv.ask(new SimpleResponse({
-                text: text,
-                speech: speech ||  text
-            }));
-
-            if(config.suggestions){
+            if(!close && config.suggestions){
                 msg.conv.ask(new Suggestions(config.suggestions.split(',')));
             }
             send(msg);

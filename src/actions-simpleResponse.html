@@ -19,6 +19,11 @@
         <label for="node-input-suggestions"><i class="icon-tag"></i> Suggestions</label>
         <input type="text" id="node-input-suggestions" placeholder="suggestion1,suggestion2...">
     </div>
+
+    <div class="form-row">
+        <label for="node-input-close"><i class="icon-tag"></i> Close conversation?</label>
+        <input type="bool" id="node-input-close" placeholder="false">
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="simple-response">
@@ -31,6 +36,9 @@
     <p>
         example => {simpleresponse:{text:'text', speech:'speech'}}
     </p>
+    <p>
+        If close is specified, suggestions will not be used.
+    </p>
 </script>
 
 <script type="text/javascript">
@@ -41,7 +49,8 @@
             name: {value:""},
             text: {value:"", required:true},
             speech:{value:""},
-            suggestions:{value:""}
+            suggestions:{value:""},
+            close:{value:false}
         },
         inputs:1,
         outputs:1,
