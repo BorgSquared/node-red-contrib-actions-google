@@ -10,7 +10,7 @@ module.exports = function(RED) {
             const msgspeech = msg.simpleresponse && msg.simpleresponse.speech;
             const text = msgtext || config.text;
             const speech = msgspeech || config.speech;
-            const speech = config.close;
+            const close = config.close;
             
             if (!close)
                 msg.conv.ask(new SimpleResponse({
